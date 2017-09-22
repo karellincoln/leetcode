@@ -1,24 +1,24 @@
-##问题
+## 问题
 
 Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
 
 A region is captured by flipping all 'O's into 'X's in that surrounded region.
 
 For example,
-``X X X X
+```X X X X
 X O O X
 X X O X
-X O X X``
+X O X X```
 
 After running your function, the board should be:
 
-``X X X X
+```X X X X
 X X X X
 X X X X
-X O X X``
+X O X X```
 
 
-##想法
+## 想法
 
 一开始的想法：周围是活的， 但是一开始想能不能通过bfs解决问题。用bfs比较麻烦。
 
