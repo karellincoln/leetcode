@@ -57,9 +57,9 @@ public:
         int res = 0;
 
         for (int i = 0; i < points.size() - 1; ++i) {
-            unordered_map<pair<int, int>, int> num;
-            int vertical = 1, duplicate = 0;
-            int local = 1;
+            map<pair<int, int>, int> num;
+            int vertical = 0, duplicate = 0;
+            int local = 0;
             for (int j  = i + 1; j < points.size(); ++j) {
                 if (points[i].x == points[j].x) {
                     if (points[i].y == points[j].y)
@@ -68,16 +68,16 @@ public:
                         ++vertical;
                 }
                 else {
-                    int a = (points[i].y - points[j].y)
+                    int a = (points[i].y - points[j].y);
                     int b = (points[i].x - points[j].x);
                     int g = GCD(a, b);
                     a /= g;
                     b /= g;
-                    num[make_pair<a,b>] = (num[make_pair<a,b>] == 0) ? 2 : num[make_pair<a,b>] + 1;
-                    local = max(local, num[slope]);
+                    ++num[make_pair(a,b)];
+                    local = max(local, num[make_pair(a,b)]);
                 }
             }
-            local = max(local, vertical) + duplicate;
+            local = max(local, vertical) + duplicate + 1;
             res = max(res, local);
         }
 
