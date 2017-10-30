@@ -4,11 +4,14 @@ Given a binary tree, imagine yourself standing on the right side of it, return t
 
 For example:   
 Given the following binary tree,
->   1            <---
-> /   \
->2     3         <---
-> \     \
->  5     4       <---
+```
+   1            <---
+ /   \
+2     3         <---
+ \     \
+  5     4       <---
+```
+
 You should return \[1, 3, 4\].
 
 ## 思考
