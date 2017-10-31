@@ -77,3 +77,46 @@ func isHappy(n int) bool {
 
 ```
 
+
+## 203. Remove Linked List Elements
+
+### 问题
+
+Remove all elements from a linked list of integers that have value val.
+
+Example
+Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
+Return: 1 --> 2 --> 3 --> 4 --> 5
+
+### 思考
+
+链表的操作，按照之前的经验，添加一个额外的头节点。使得头结点的操作变得简单。那这道就没有其他问题了。
+
+### 代码
+
+```
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func removeElements(head *ListNode, val int) *ListNode {
+    var pre_head ListNode
+    pre_head.Next = head
+    tmp := &pre_head
+    for ; tmp.Next != nil;  {
+        if tmp.Next.Val == val {
+            tmp.Next = tmp.Next.Next
+        } else {
+            tmp = tmp.Next
+        }
+    }
+    
+    return pre_head.Next
+}
+
+```
+
+
