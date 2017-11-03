@@ -119,4 +119,47 @@ func removeElements(head *ListNode, val int) *ListNode {
 
 ```
 
+## 204. Count Primes
 
+### 问题
+
+Description:
+
+Count the number of prime numbers less than a non-negative number, n.
+
+### 思考
+质数筛选法[Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
+```
+Input: an integer n > 1.
+ 
+ Let A be an array of Boolean values, indexed by integers 2 to n,
+ initially all set to true.
+ 
+ for i = 2, 3, 4, ..., not exceeding √n:
+   if A[i] is true:
+     for j = i^2, i^2+i, i^2+2i, i^2+3i, ..., not exceeding n:
+       A[j] := false.
+ 
+ Output: all i such that A[i] is true.
+
+```
+
+
+### 代码
+
+```
+func countPrimes(n int) int {
+    primes := make([]bool, n)
+    var sum int
+    for i := 2; i < n; i++ {
+        if (!primes[i]) {
+            sum ++
+            for j := i * i; j < n; j += i {
+                primes[j] = true
+            }
+        }
+    }
+    return sum
+}
+
+```
