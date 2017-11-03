@@ -163,3 +163,46 @@ func countPrimes(n int) int {
 }
 
 ```
+
+
+## 205. Isomorphic Strings
+
+### 问题
+
+Given two strings **s** and **t**, determine if they are isomorphic.
+
+Two strings are isomorphic if the characters in s can be replaced to get t.
+
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
+
+For example,
+Given "egg", "add", return true.
+
+Given "foo", "bar", return false.
+
+Given "paper", "title", return true.
+
+### 思考
+我采用比较简单的方法isomorphic要保证，每个映射唯一切位置相同所以我直接采用数组映射的方法，如果双方都可以成功的映射过去则能够成功，否则不能。
+
+期间记住，go语言没有char类型取代它的可以是byte，或者rune（Unicode）。加深了go变量的传值与传引用的含义，对slice和map的理解更好了。
+
+### 代码
+
+```
+func isIsomorphic(s string, t string) bool {
+    help := func(s, t string) bool {
+        m := make(map[rune]rune)
+        for i, char := range s {
+            if m[rune(char)] == 0 {
+                m[rune(char)] = rune(t[i])
+            } else if m[rune(char)] != rune(t[i]) {
+                return false
+            }
+        }
+        return true
+    }
+    return help(s, t) && help (t, s)
+}
+```
+
