@@ -206,3 +206,61 @@ func isIsomorphic(s string, t string) bool {
 }
 ```
 
+
+## 206. Reverse Linked List
+
+### 问题
+Reverse a singly linked list.
+
+### 思考
+
+根据：之前的经验这种操作只要在头中添加一个节点就可以很容易的操作了。但是要善于总结，思考问题。
+
+### 代码
+
+```
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func reverseList(head *ListNode) *ListNode {
+    var pre_head ListNode
+    var tmp *ListNode
+    for head != nil {
+        tmp = head
+        head = head.Next
+        tmp.Next = pre_head.Next
+        pre_head.Next = tmp
+    }
+    
+    return pre_head.Next
+}
+
+/**
+ * 递归的方法
+ */
+
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func reverseList(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil {
+        return head
+    }
+    
+    new_head := reverseList(head.Next)
+    head.Next.Next = head
+    head.Next = nil
+    
+    return new_head
+}
+```
+
+
