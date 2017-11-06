@@ -264,3 +264,87 @@ func reverseList(head *ListNode) *ListNode {
 ```
 
 
+## 207. Course Schedule
+
+There are a total of n courses you have to take, labeled from 0 to n - 1.
+
+### 问题
+
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+
+Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?
+
+For example:
+```
+2, [[1,0]]
+```
+There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.
+```
+2, [[1,0],[0,1]]
+```
+There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.
+
+### 思考
+很明显这是一个拓扑排序问题，而且就是单单纯纯的拓扑排序问题。我一开始没有直接自己实现代码，是在想问题给的数据是一个二元数组，在拓扑排序中不要处理。要不要转换成链接表或者链接矩阵呢？根据别人的代码他们也是这么操作的。
+
+**知识点：**
+拓扑排序：
+定义：将有向图中的顶点以线性方式进行排序。即对于任何连接自顶点u到顶点v的有向边uv，在最后的排序结果中，顶点u总是在顶点v的前面。
+
+**偏序/全序关系：**   
+在我们所有可以选择的课程中，任意两门课程之间的关系要么是确定的(即拥有先后关系)，要么是不确定的(即没有先后关系)，绝对不存在互相矛盾的关系(即环路)。以上就是偏序的意义，    
+所谓全序，就是在偏序的基础之上，有向无环图中的任意一对顶点还需要有明确的关系(反映在图中，就是单向连通的关系，注意不能双向连通，那就成环了)。   
+
+**Kahn算法：**   
+摘一段维基百科上关于Kahn算法的伪码描述：   
+```
+L← Empty list that will contain the sorted elements
+S ← Set of all nodes with no incoming edges
+while S is non-empty do
+    remove a node n from S
+    insert n into L
+    foreach node m with an edge e from nto m do
+        remove edge e from thegraph
+        ifm has no other incoming edges then
+            insert m into S
+if graph has edges then
+    return error (graph has at least onecycle)
+else 
+    return L (a topologically sortedorder)
+```
+基于bfs，还可以基于DFS。
+
+
+### 代码
+
+```
+
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        vector<vector<int>> graph(numCourses);
+        vector<int> ind(numCourses,0);
+        queue<int> q;
+        for(auto a:prerequisites){
+            graph[a.second].push_back(a.first);
+            ind[a.first]++;
+        }
+        for(int i=0;i<ind.size();i++){
+            if(ind[i]==0) q.push(i);
+        }
+        while(!q.empty()){
+            int cur=q.front();q.pop();
+            for(int a:graph[cur]){
+                ind[a]--;
+                if(ind[a]==0) q.push(a);
+            }
+        }
+        for(int i=0;i<ind.size();i++){
+            if(ind[i]!=0) return false;
+        }
+        return true;
+    }
+};
+
+```
+

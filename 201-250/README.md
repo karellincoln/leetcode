@@ -6,3 +6,4 @@
 4. [204. Count Primes](https://leetcode.com/problems/count-primes/description/)这是一个定位为easy的问题，但是如果不知道质数筛选法的话，很难写出高性能的算法。
 5. [205. Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/description/) 这道题做着挺舒服的。
 6. [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/description/) 旋转链表，对现在的我还是挺简单的。
+7. [207. Course Schedule](https://leetcode.com/problems/course-schedule/) 拓扑排序，可以用来熟悉这个函数的写法。
