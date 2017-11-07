@@ -348,3 +348,88 @@ public:
 
 ```
 
+
+## 208. Implement Trie (Prefix Tree)
+
+### 问题
+
+Implement a trie with insert, search, and startsWith methods.
+
+Note:
+You may assume that all inputs are consist of lowercase letters a-z.
+
+### 思考
+
+1. 下面代码重复率比较高，需要重写。
+2. trie的知识
+
+
+### 代码
+
+```
+class TrieNode {
+public:
+    TrieNode(bool w = false):word(w){
+        memset(children, 0, sizeof(children));
+    }
+    bool word;
+    TrieNode* children[26];
+};
+class Trie {
+public:
+    /** Initialize your data structure here. */
+    Trie():root(){
+    }
+    
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        TrieNode *tmp = &root;
+        for(int i = 0; i < word.size(); ++i) {
+            int k = word[i] - 'a';
+            if (tmp->children[k] == NULL) {
+                tmp->children[k] = new TrieNode();
+            }
+            tmp = tmp->children[k];
+        }
+        tmp->word = true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        TrieNode *tmp = &root;
+        for(int i = 0; i < word.size(); ++i) {
+            int k = word[i] - 'a';
+            if (tmp->children[k] == NULL) {
+                return false;
+            }
+            tmp = tmp->children[k];
+        }
+        return tmp->word;
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        TrieNode *tmp = &root;
+        for(int i = 0; i < prefix.size(); ++i) {
+            int k = prefix[i] - 'a';
+            if (tmp->children[k] == NULL) {
+                return false;
+            }
+            tmp = tmp->children[k];
+        }
+        return true;
+    }
+    
+    TrieNode root;
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * bool param_2 = obj.search(word);
+ * bool param_3 = obj.startsWith(prefix);
+ */
+
+```
+
