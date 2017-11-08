@@ -8,4 +8,5 @@
 6. [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/description/) 旋转链表，对现在的我还是挺简单的。
 7. [207. Course Schedule](https://leetcode.com/problems/course-schedule/) 拓扑排序，可以用来熟悉这个函数的写法。
 8. [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/discuss/) trie 树是一个为了特定目的而构建的树，对于统计单词出现的频率和前缀的频率具有比较高的性能。挺有趣的。
-9. 
+9. [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/description/) 一个测试我自己写流程的题目，难度不大。
+10. 
