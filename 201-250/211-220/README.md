@@ -181,3 +181,49 @@ public:
     
 };
 ```
+
+
+## 213. House Robber II
+
+### 问题
+
+**Note:** This is an extension of House Robber.
+
+After robbing those houses on that street, the thief has found himself a new place for his thievery so that he will not get too much attention. This time, all houses at this place are **arranged in a circle**. That means the first house is the neighbor of the last one. Meanwhile, the security system for these houses remain the same as for those in the previous street.
+
+Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight **without alerting the police.**
+
+
+### 思考
+
+现在相比之前加了一个条件既前后不能同时抢。那就可以分解问题，分成不抢前的情况，和不抢后的情况。
+
+### 代码
+
+```
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        if (nums.size() == 0) return 0;
+        if (nums.size() == 1) return nums[0];
+        int m;
+        int rob = 0, norob = 0;
+        for (int i = 1; i < nums.size(); ++i) {
+            int currRob = norob + nums[i];
+            norob = max(norob, rob);
+            rob = currRob;
+        }
+        m = max(rob, norob);
+        rob = 0, norob = 0;
+        for (int i = 0; i < nums.size() - 1; ++i) {
+            int currRob = norob + nums[i];
+            norob = max(norob, rob);
+            rob = currRob;
+        }
+        m = max(m, max(rob, norob));
+        
+        return m;
+    }
+};
+
+```

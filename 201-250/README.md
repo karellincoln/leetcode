@@ -12,4 +12,4 @@
 10. [210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/description/) 
 11. [211. Add and Search Word - Data structure design](https://leetcode.com/problems/add-and-search-word-data-structure-design/description/) 这个和208这道题是一样的，根据208我们知道trie tree结构对查找单词的性能十分好。所以使用这个算法。
 12. [212. Word Search II](https://leetcode.com/problems/word-search-ii/description/) 也是使用trie。现在发现trie真的挺好用的。简单有效
-13. 
+13. [213. House Robber II](https://leetcode.com/problems/house-robber-ii/description/) 在有House Robber的基础上考虑分别不抢前后房子。取最大。
