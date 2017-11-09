@@ -10,3 +10,6 @@
 8. [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/discuss/) trie 树是一个为了特定目的而构建的树，对于统计单词出现的频率和前缀的频率具有比较高的性能。挺有趣的。
 9. [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/description/) 一个测试我自己写流程的题目，难度不大。
 10. [210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/description/) 
+11. [211. Add and Search Word - Data structure design](https://leetcode.com/problems/add-and-search-word-data-structure-design/description/) 这个和208这道题是一样的，根据208我们知道trie tree结构对查找单词的性能十分好。所以使用这个算法。
+12. [212. Word Search II](https://leetcode.com/problems/word-search-ii/description/) 也是使用trie。现在发现trie真的挺好用的。简单有效
+13. 
