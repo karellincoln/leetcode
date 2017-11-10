@@ -227,3 +227,115 @@ public:
 };
 
 ```
+
+
+## 214. Shortest Palindrome
+
+### 题目
+Given a string S, you are allowed to convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.
+
+For example:
+```
+Given "aacecaaa", return "aaacecaaa".
+
+Given "abcd", return "dcbabcd".
+```
+
+### 思考
+
+[从头到尾彻底理解KMP（2014年8月22日版）](http://blog.csdn.net/v_july_v/article/details/7041827) 很好的讲解。
+最快的算法在理解上是最简单的。
+
+
+### 代码
+
+```
+// 超时的代码。一个很奇怪的错误，我还是没有想出原因。就算没有超时那个超长的代码数组我得出的结果也是错误的。难道是这种hash算法发生碰撞了。
+class Solution {
+    int stringHash(string &s, int start, int end) {
+        unsigned hash = 0;
+        for (int i = start; i < end; ++i) {
+            hash = s[i] + hash * 131;
+        }
+        return hash & 0x7fffffff;
+    }
+    int reverseHash(string &s, int end, int start) {
+        unsigned hash = 0;
+        for (int i = end; i > start; --i) {
+            hash = s[i] + hash * 131;
+        }
+        return hash & 0x7fffffff;
+    }
+public:
+    string shortestPalindrome(string s) {
+        string res;
+        map<int, int> m;
+        for (int i = 0; i < s.size(); ++i) {
+            int h = stringHash(s, 0, i + 1);
+            m[h] = i;
+        }
+        for (int i = s.size() - 1; i >= 0; --i) {
+            int h = reverseHash(s, i, -1);
+            if (m.find(h) != m.end()) {
+                string suffix;
+                for (int k = s.size() -1; k > m[h]; k--) {
+                    suffix.push_back(s[k]);
+                }
+                res = suffix + s;
+                break;
+            }
+        }
+        
+        return res;
+    }
+};
+
+// 使用kmp算法解决的。
+class Solution {
+public:
+    string shortestPalindrome(string s) {
+        string rev_s = s;
+        reverse(rev_s.begin(), rev_s.end());
+        string l = s + "#" + rev_s;
+        
+        vector<int> p(l.size(), 0);
+        for (int i = 1; i < l.size(); i++) {
+            int j = p[i - 1];
+            while (j > 0 && l[i] != l[j])
+                j = p[j - 1];
+            p[i] = (j += l[i] == l[j]);
+        }
+        
+        return rev_s.substr(0, s.size() - p[l.size() - 1]) + s;
+    }
+};
+
+// 最快的代码。
+class Solution {
+public:
+    string shortestPalindrome(string str) {
+        int sz(str.size());
+        if(sz < 2)
+            return str;
+        int len(1);
+
+        for(int i = 0; i < (sz + 1)/2; ) {
+            int start(i - 1), end(i + 1);
+            
+            while((end < sz) && (str[end] == str[end - 1])) end++;
+            
+            i = end;
+            
+            while((start >= 0) && (end < sz) && (str[start] == str[end]))
+                start--, end++;
+            if(start ==  -1)
+                len = max(len, end - start - 1);
+        }
+        //cout << len << endl;
+        string s(str.substr(len));
+        reverse(s.begin(), s.end());
+        return s + str;
+    }
+};
+
+```
