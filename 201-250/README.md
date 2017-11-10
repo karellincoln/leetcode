@@ -14,3 +14,4 @@
 12. [212. Word Search II](https://leetcode.com/problems/word-search-ii/description/) 也是使用trie。现在发现trie真的挺好用的。简单有效
 13. [213. House Robber II](https://leetcode.com/problems/house-robber-ii/description/) 在有House Robber的基础上考虑分别不抢前后房子。取最大。
 14. [214. Shortest Palindrome](https://leetcode.com/problems/shortest-palindrome/description/) 这道题目很有思考的意义。**要多看**
+15. [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/description/) 很熟悉的一道题目。
