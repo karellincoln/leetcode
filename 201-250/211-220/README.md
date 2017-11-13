@@ -384,3 +384,63 @@ public:
 
 ```
 
+## 216. Combination Sum III
+
+### 问题
+
+Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+
+
+Example 1:
+```
+Input: k = 3, n = 7
+```
+Output:
+```
+[[1,2,4]]
+```
+Example 2:
+```
+Input: k = 3, n = 9
+```
+Output:
+```
+[[1,2,6], [1,3,5], [2,3,4]]
+```
+
+### 思考
+那n不是要小于45吗？
+这次代码写的比较顺了。
+
+### 代码
+
+```
+class Solution {
+public:
+    void help(int start, int k, int n) {
+        if (k == 0 && n == 0) { result.push_back(combination); return; }
+        if (start + 1 > n || k == 0 || n/k > 9) {return;}
+        for (int i = start + 1; i <= n/k; ++i) {
+            combination.push_back(i);
+            help(i, k - 1, n - i);
+            combination.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        if (k == 0 || n / k > 9) return result;
+        for (int i = 1; i <= n/k; ++i) {
+            combination.push_back(i);
+            help(i, k - 1, n - i);
+            combination.pop_back();
+        }
+        
+        return result;
+    }
+    vector<vector<int> > result;
+    vector<int> combination;
+};
+
+```
+
+
+

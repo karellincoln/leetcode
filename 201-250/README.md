@@ -15,3 +15,4 @@
 13. [213. House Robber II](https://leetcode.com/problems/house-robber-ii/description/) 在有House Robber的基础上考虑分别不抢前后房子。取最大。
 14. [214. Shortest Palindrome](https://leetcode.com/problems/shortest-palindrome/description/) 这道题目很有思考的意义。**要多看**
 15. [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/description/) 很熟悉的一道题目。
+16. [216. Combination Sum III](https://leetcode.com/problems/combination-sum-iii/description/) 轻松的使用递归解决。
