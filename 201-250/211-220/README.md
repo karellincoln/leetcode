@@ -443,4 +443,29 @@ public:
 ```
 
 
+## 217. Contains Duplicate
 
+### 问题
+
+Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+
+### 思考
+一开始的话是先排序然后直接遍历。但是其实是知道用映射比较好的。但是想到自己实现为了解决冲突挺麻烦的，还有查找也是一个问题。还好有stl库。
+但是好尴尬，好像排序后遍历的时间比map的更短。像map，set这些操作都是有固定的时间花销的。
+
+### 代码
+
+```
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        map<int, int> map;
+        for (auto a : nums) {
+            if (map.find(a) != map.end()) return true;
+            else map[a] = 1;
+        }
+        return false;
+    }
+};
+
+```
