@@ -18,4 +18,5 @@
 16. [216. Combination Sum III](https://leetcode.com/problems/combination-sum-iii/description/) 轻松的使用递归解决。
 17. [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/description/) 真的是easy的题目。
 18. [218. The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/description/) 先不写吧。
-19. [219. Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/description/) 
+19. [219. Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/description/)
+20. [220. Contains Duplicate III](https://leetcode.com/problems/contains-duplicate-iii/description/) 还是比较轻松。

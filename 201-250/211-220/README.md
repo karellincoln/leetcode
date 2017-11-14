@@ -475,10 +475,11 @@ public:
 
 ### 问题
 
-Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.
+Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums\[i\] = nums\[j\] and the absolute difference between i and j is at most k.
 
 ### 思考
 直接根据217的思想修改。
+同217 应该要使用unordered_map类型的而不是map， map好像是使用红黑树实现的有序的map而我们不需要这样的特性。
 
 ### 代码
 ```
@@ -499,4 +500,37 @@ public:
 
 ```
 
+
+## 220. Contains Duplicate III
+
+### 问题
+Given an array of integers, find out whether there are two distinct indices i and j in the array such that the absolute difference between nums\[i\] and nums\[j\] is at most t and the absolute difference between i and j is at most k.
+
+### 思考
+这个问题需要使用到排序了，单纯map已经解决不了问题了。
+
+### 代码
+
+```
+class Solution {
+public:
+    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
+        vector<pair<int, int> > pairs(nums.size());
+        for (int i = 0; i < nums.size(); ++i) {
+            pairs[i] = make_pair(nums[i], i);
+        }
+        sort(pairs.begin(), pairs.end());
+        
+        for (int i = 0; i < pairs.size(); ++i) {
+            for (int j = i + 1; j < pairs.size(); ++j) {
+                if (long(pairs[j].first) - long(pairs[i].first) <= t && abs(pairs[j].second - pairs[i].second) <= k) return true;
+                else if (pairs[j].first - pairs[i].first > t) break;
+            }
+        }
+        
+        return false;
+    }
+};
+
+```
 
