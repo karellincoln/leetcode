@@ -22,4 +22,5 @@
 20. [220. Contains Duplicate III](https://leetcode.com/problems/contains-duplicate-iii/description/) 还是比较轻松。
 21. [221. Maximal Square](https://leetcode.com/problems/maximal-square/description/)  可以使用dp解决。
 22. [222. Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/description/)  解决方法也比较巧妙
-23. 
+23. [223. Rectangle Area](https://leetcode.com/problems/rectangle-area/description/)  对图的观点有一点提升。
+24. 

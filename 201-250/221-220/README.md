@@ -137,3 +137,44 @@ public:
 
 ```
 
+
+## 223. Rectangle Area
+
+### 问题
+Find the total area covered by two rectilinear rectangles in a 2D plane.
+
+Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.
+
+![Rectangle Area](https://leetcode.com/static/images/problemset/rectangle_area.png)
+
+Assume that the total area is never beyond the maximum possible value of int.
+### 思考
+下面的代码虽然没有错误但是有一个不好的地方，一开始坐标我是声明为int，但是x2-x1在题目的条件中**越界**了，就改为long类型了。   
+**注意**：
+int的算法一定要考虑int的边界问题。   
+但是其实return area的那个条件是可以提前判断并且可以不使用减法，而是直接两个数比较。
+
+### 代码
+
+```
+class Solution {
+public:
+    int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        long x1, y1, x2, y2;
+        long area = long((C - A) * (D - B)) + long((G - E) * (H - F));
+        
+        x1 = A > E ? A : E;
+        y1 = B > F ? B : F;
+        
+        x2 = C > G ? G : C;
+        y2 = D > H ? H : D;
+        
+        if (x2 - x1 <= 0 || y2 - y1 <= 0) return area;
+        
+        return area - (x2 - x1) * (y2 - y1);
+    }
+};
+
+```
+
+
