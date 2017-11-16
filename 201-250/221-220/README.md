@@ -497,4 +497,49 @@ public:
 ```
 
 
+## 229. Majority Element II
+
+### 问题
+
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. The algorithm should run in linear time and in O(1) space.
+
+### 思考
+Boyer-Moore Majority Vote algorithm generalization to elements appear more than floor(n/k) times   
+很有借鉴意义。
+
+### 代码
+
+```
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int x = 0, y = 1, cx = 0, cy = 0;
+        for (auto a : nums) {
+            if (a == x) ++cx;
+            else if (a == y) ++cy;
+            else if (!cx) x = a, cx = 1;
+            else if (!cy) y = a, cy = 1;
+            else --cx, --cy;
+        }
+        
+        cx = 0, cy = 0;
+        
+        for (auto a : nums) {
+            if (a == x) ++cx;
+            else if (a == y) ++cy;
+        }
+        
+        vector<int> res;
+        if (cx > nums.size()/3) res.push_back(x);
+        if (cy > nums.size()/3) res.push_back(y);
+        
+        return res;
+    }
+};
+
+```
+
+
+
 

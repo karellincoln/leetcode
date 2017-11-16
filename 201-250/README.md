@@ -28,3 +28,4 @@
 26. [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/description/) 
 27. [227. Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/description/) 对我具有很高的参考价值和思考价值。
 28. [228. Summary Ranges](https://leetcode.com/problems/summary-ranges/description/) 
+29. [229. Majority Element II](https://leetcode.com/problems/majority-element-ii/description/) 采用 Boyer-Moore Majority Vote algorithm 
