@@ -178,3 +178,111 @@ public:
 ```
 
 
+
+## 224. Basic Calculator
+
+### 问题
+Implement a basic calculator to evaluate a simple expression string.
+
+The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
+
+You may assume that the given expression is always valid.
+
+Some examples:
+```
+"1 + 1" = 2
+" 2-1 + 2 " = 3
+"(1+(4+5+2)-3)+(6+8)" = 23
+```
+
+### 思考
+简单的栈解决。   
+其实并不简单：   
+[将中序表达式转变成后缀表达式：](http://blog.csdn.net/sgbfblog/article/details/8001651)   
+```
+中缀表达式a + b*c + (d * e + f) * g，其转换成后缀表达式则为a b c * + d e * f  + g * +。
+转换过程需要用到栈，具体过程如下：
+1）如果遇到操作数，我们就直接将其输出。
+2）如果遇到操作符，则我们将其放入到栈中，遇到左括号时我们也将其放入栈中。
+3）如果遇到一个右括号，则将栈元素弹出，将弹出的操作符输出直到遇到左括号为止。注意，左括号只弹出并不输出。
+4）如果遇到任何其他的操作符，如（“+”， “*”，“（”）等，从栈中弹出元素直到遇到发现更低优先级的元素(或者栈为空)为止。弹出完这些元素后，才将遇到的操作符压入到栈中。有一点需要注意，只有在遇到" ) "的情况下我们才弹出" ( "，其他情况我们都不会弹出" ( "。
+5）如果我们读到了输入的末尾，则将栈中所有元素依次弹出。
+```
+
+
+
+### 代码
+
+```
+class Solution {
+public:
+    void cal(){
+        int a = num.top(); num.pop();
+        int b = num.top(); num.pop();
+        char p = op.top(); op.pop();
+        switch (p) {
+            case '+':
+                num.push(a + b);
+                break;
+            case '-':
+                num.push(b - a);
+                break;
+            default:
+                break;
+        }
+    }
+    void calculateSub() {
+        while(op.top() != '(') {
+            cal();
+        }
+        op.pop();
+    }
+    
+    void calculateResult() {
+        while (!op.empty()) {
+            cal();
+        }
+        result = num.top(); num.pop();
+    }
+    
+    int calculate(string s) {
+        for (int i = 0; i < s.size(); ++i) {
+            switch(s[i]) {
+                case '-':
+                case '+':
+                    if (op.empty() || op.top() == '(') op.push(s[i]);
+                    else {
+                        cal();
+                        op.push(s[i]);
+                    }
+                    break;
+                case '(':
+                    op.push(s[i]);
+                    break;
+                case ' ':
+                    break;
+                case ')':
+                    calculateSub();
+                    break;
+                default:
+                    int current_num = 0;
+                    while (i < s.size() && s[i] >= '0' && s[i] <= '9') {
+                        current_num = current_num * 10 + s[i] - '0';
+                        ++i;
+                    }
+                    num.push(current_num);
+                    --i;
+                    break;
+            }
+        }
+        calculateResult();
+        return result;
+    }
+    
+    int result;
+    stack<int> num;
+    stack<char> op;
+};
+
+```
+
