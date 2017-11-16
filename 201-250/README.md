@@ -27,4 +27,4 @@
 25. [225. Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/description/) 
 26. [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/description/) 
 27. [227. Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/description/) 对我具有很高的参考价值和思考价值。
-28. 
+28. [228. Summary Ranges](https://leetcode.com/problems/summary-ranges/description/) 
