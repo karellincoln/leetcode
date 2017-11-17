@@ -128,6 +128,72 @@ public:
 ```
 
 
+## 234. Palindrome Linked List
+
+### 问题
+Given a singly linked list, determine if it is a palindrome.
+
+Follow up:   
+Could you do it in O(n) time and O(1) space?
+
+### 思考
+不是很有趣。
+
+### 代码
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int count(ListNode* head) {
+        int c = 0;
+        while (head != NULL) {
+            head = head->next;
+            ++c;
+        }
+        return c;
+    }
+    ListNode* reverseList(ListNode *head) {
+        ListNode* pre=NULL;
+        ListNode* next=NULL;
+        while(head!=NULL){
+            next=head->next;
+            head->next=pre;
+            pre=head;
+            head=next;
+        }
+        return pre;
+    }
+    bool isPalindrome(ListNode* head) {
+        int l = count(head);
+        if (l < 2) return true;
+        ListNode *second = head;
+        for (int i = 0; i < l/2; ++i) {
+            second = second->next;
+        }
+        second = (l%2) ? second->next : second;
+        second = reverseList(second);
+        
+        while (second != NULL) {
+            if (head->val != second->val) return false;
+            second = second->next;
+            head = head->next;
+        }
+        
+        return true;
+    }
+};
+
+```
+
+
+
 
 
 
