@@ -35,4 +35,5 @@
 33. [233. Number of Digit One](https://leetcode.com/problems/number-of-digit-one/description/) **对我很有意义。**
 34. [234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/description/) 
 35. [235. Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
-36. 
+36. [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/) **这个递归挺精彩的。**
+37. 
