@@ -31,4 +31,5 @@
 29. [229. Majority Element II](https://leetcode.com/problems/majority-element-ii/description/) 采用 Boyer-Moore Majority Vote algorithm 
 30. [230. Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/) 中序遍历处理。
 31. [231. Power of Two](https://leetcode.com/problems/power-of-two/) (n & (n - 1))
-32. 
+32. [232. Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/description/) 两个栈。
+33. [233. Number of Digit One](https://leetcode.com/problems/number-of-digit-one/description/) **对我很有意义。**
