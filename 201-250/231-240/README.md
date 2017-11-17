@@ -319,6 +319,45 @@ public:
 
 ```
 
+## 238. Product of Array Except Self
+
+### 问题
+
+Given an array of n integers where n > 1, `nums`, return an array `output` such that `output[i]` is equal to the product of all the elements of `nums` except `nums[i]`.
+
+Solve it **without division** and in O(n).
+
+For example, given `[1,2,3,4]`, return `[24,12,8,6]`.
+
+Follow up:
+Could you solve it with constant space complexity? (Note: The output array does not count as extra space for the purpose of space complexity analysis.)
+
+
+### 思考
+确实没有想到可以将其分成两部分计算，被自己分成的前和后。
+
+### 代码
+```
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> res(nums.size());
+        
+        for(int i = 0, tmp = 1; i < nums.size(); ++i) {
+            res[i] = tmp;
+            tmp *= nums[i];
+        }
+        
+        for (int i = nums.size() - 1, tmp = 1; i >= 0; --i) {
+            res[i] *= tmp;
+            tmp *= nums[i];
+        }
+        
+        return res;
+    }
+};
+```
 
 
 
