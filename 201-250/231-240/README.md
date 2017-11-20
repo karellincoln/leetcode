@@ -450,6 +450,81 @@ public:
 
 ```
 
+## 240. Search a 2D Matrix II
+
+### 问题
+Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+
+Integers in each row are sorted in ascending from left to right.
+Integers in each column are sorted in ascending from top to bottom.
+For example,
+
+Consider the following matrix:
+```
+[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+```
+Given target = 5, return true.
+
+Given target = 20, return false.
+
+### 思考
+我好像是做过这道题目的，在剑指offer中也出现过。
+使用递归的方式，我出错了几次，而且代码速度很慢。
+O(m + n) 复杂度的算法。
+
+### 代码
+```
+class Solution {
+public:
+    bool help(vector<vector<int> >& matrix, int sr, int sc, int er, int ec, int target) {
+        if (sr >= er || sc >= ec) return false;
+        int mr = (sr + er) / 2, mc = (sc + ec) / 2;
+        if (matrix[mr][mc] == target) return true;
+        else if (matrix[mr][mc] < target) {
+            return help(matrix, sr, mc + 1, mr + 1, ec, target) || 
+                   help(matrix, mr + 1, sc, er, mc + 1, target) || 
+                   help(matrix, mr + 1, mc + 1, er, ec, target);
+        }
+        
+        return help(matrix, sr, sc, mr, mc, target) ||
+               help(matrix, sr, mc, mr, ec, target) ||
+               help(matrix, mr, sc, er, mc, target);
+    }
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if (matrix.size() == 0) return false;
+        
+        return help(matrix, 0, 0, matrix.size(), matrix[0].size(), target);
+    }
+};
+
+O(m + n) 复杂度的算法。
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
+    if (matrix.size() == 0) return false;
+    
+    int i = 0;
+    int j = matrix[0].size() - 1;
+    while (i < matrix.size() && j >= 0) {
+        if (matrix[i][j] == target) return true;
+        
+        if (matrix[i][j] < target) {
+            ++i;
+        }
+        else --j;
+    }
+    
+    return false;
+}
+
+
+
+```
+
 
 
 
