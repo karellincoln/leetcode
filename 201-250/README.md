@@ -40,3 +40,5 @@
 38. [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/description/) 挺好的，开放思想。
 39. [239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/description/) 很好的题目，新的技术[单调队列](http://www.cnblogs.com/neverforget/archive/2011/10/13/ll.html)
 40. [240. Search a 2D Matrix II](https://leetcode.com/problems/search-a-2d-matrix-ii/description/) 还是很不熟悉啊。
+41. [241. Different Ways to Add Parentheses](https://leetcode.com/problems/different-ways-to-add-parentheses/discuss/) 挺有意思的。
+42. 
