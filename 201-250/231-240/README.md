@@ -360,7 +360,95 @@ public:
 ```
 
 
+## 239. Sliding Window Maximum
 
+### 问题
+
+Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.
+
+For example,
+Given nums = `[1,3,-1,-3,5,3,6,7]`, and k = 3.
+```
+Window position                Max
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+```
+
+Therefore, return the max sliding window as `[3,3,5,5,6,7]`.
+
+Note: 
+You may assume k is always valid, ie: 1 ≤ k ≤ input array's size for non-empty array.
+
+### 思考
+这道题目不是我自己想出来的，但是还是很有参考价值。我应该是知道单调队列这个东西的。但是我从来没有想过可以这么使用。
+
+```
+Sliding window minimum/maximum = monotonic queue. I smelled the solution just when I read the title.
+This is essentially same idea as others' deque solution, but this is much more standardized and modulized. If you ever need to use it in your real product, this code is definitely more preferable.
+
+What does Monoqueue do here:
+
+It has three basic options:
+
+push: push an element into the queue; O (1) (amortized)
+
+pop: pop an element out of the queue; O(1) (pop = remove, it can't report this element)
+
+max: report the max element in queue;O(1)
+```
+单调队列就是(a1, a2, a3,...) 有 a1 <= a2 <= a3 <=... 的性质，但是我没有想到可以加入下面的计数方式。   
+
+
+### 代码
+```
+class MonoQueue {
+public:
+    void push(int val) {
+        int count = 0;
+        while (!monoQueue.empty() && monoQueue.back().first < val) {
+            count += monoQueue.back().second + 1;
+            monoQueue.pop_back();
+        }
+        monoQueue.push_back(make_pair(val, count));
+    }
+    void pop() {
+        if (monoQueue.front().second > 0) {
+            --monoQueue.front().second;
+            return;
+        }
+        monoQueue.pop_front();
+    }
+    int max() {
+        return monoQueue.front().first;
+    }
+private:
+    deque<pair<int,int> > monoQueue; // first: val, second: how many elements were deleted before it.
+};
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        vector<int> res;
+        MonoQueue mq;
+        
+        for (int i = 0; i < k - 1; ++i) {
+            mq.push(nums[i]);
+        }
+        for (int i = k - 1 ; i < nums.size(); ++i) {
+            mq.push(nums[i]);
+            res.push_back(mq.max());
+            mq.pop();
+        }
+        
+        return res;
+    }
+};
+
+```
 
 
 
