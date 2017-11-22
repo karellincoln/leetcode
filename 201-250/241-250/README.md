@@ -115,3 +115,57 @@ public:
 
 ```
 
+## 257. Binary Tree Paths
+
+### 问题
+
+Given a binary tree, return all root-to-leaf paths.
+
+For example, given the following binary tree:
+```
+   1
+ /   \
+2     3
+ \
+  5
+```
+All root-to-leaf paths are:
+
+`["1->2->5", "1->3"]`
+### 思考
+虽然思路一下子就想到了，但是代码还是写了挺久的。要加把劲啊。
+
+### 代码
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void help(TreeNode* root, string path) {
+        if (root->left == NULL && root->right == NULL) {
+            all_path.push_back(path);
+            return;
+        }
+        if (root->left != NULL) help(root->left, path + "->" + to_string(root->left->val));
+        if (root->right != NULL) help(root->right, path + "->" + to_string(root->right->val));
+    }
+    vector<string> binaryTreePaths(TreeNode* root) {
+        if (root == NULL) return all_path;
+        help(root, to_string(root->val));
+        return all_path;
+    }
+    
+    vector<string> all_path;
+};
+
+```
+
+
+
