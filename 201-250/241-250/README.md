@@ -73,3 +73,45 @@ public:
 
 ```
 
+## 242. Valid Anagram
+
+### 问题
+
+Given two strings s and t, write a function to determine if t is an anagram of s.
+
+For example,
+```
+s = "anagram", t = "nagaram", return true.
+s = "rat", t = "car", return false.
+```
+Note:   
+You may assume the string contains only lowercase alphabets.
+
+Follow up:   
+What if the inputs contain unicode characters? How would you adapt your solution to such case?
+
+### 思考
+就这样。
+
+### 代码
+```
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        vector<int> char_num(26, 0);
+        for (auto c : s) {
+            ++char_num[c-'a'];
+        }
+        for (auto c : t) {
+            if (char_num[c - 'a'] == 0) return false;
+            else --char_num[c-'a'];
+        }
+        for (auto a : char_num) {
+            if (a != 0) return false;
+        }
+        return true;
+    }
+};
+
+```
+
