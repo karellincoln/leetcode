@@ -44,3 +44,4 @@
 42. [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/description/) easy problem   
     `很意外，243-256 都是需要会员才可以练习的，故跳过`
 43. [257. Binary Tree Paths](https://leetcode.com/problems/binary-tree-paths/description/)
+44. [258. Add Digits](https://leetcode.com/problems/add-digits/description/)
