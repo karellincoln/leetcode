@@ -242,3 +242,92 @@ public:
 
 
 
+## 260. Single Number III
+
+### 问题
+Given an array of numbers nums, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once.
+
+For example:
+```
+Given nums = [1, 2, 1, 3, 2, 5], return [3, 5].
+```
+
+**Note:**   
+The order of the result is not important. So in the above example, \[5, 3\] is also correct.
+Your algorithm should run in linear runtime complexity. Could you implement it using only constant space complexity?
+
+### 思考
+先不使用常量空间吧。   
+使用unordered_set数据类型可以比较迅速的完成任务   
+
+现在思考特殊的方法。首先出现两次可以简单的使用异或^操作解决。但是两个不同的a，b也会进行异或操作。   
+那要怎么将a，b分开的。而且a，b异或之后的值可以给我们什么信息呢。具体的查看下面的代码。
+
+### 代码
+```
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        vector<int> res;
+        unordered_set<int> set;
+        for(auto a : nums) {
+            if (set.find(a) == set.end()) set.insert(a);
+            else set.erase(a);
+        }
+        for(auto s : set) {
+            res.push_back(s);
+        }
+        
+        return res;
+    }
+};
+
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        int aXorb = 0;  // the result of a xor b;
+        for (auto item : nums) aXorb ^= item;
+        int lastBit = (aXorb & (aXorb - 1)) ^ aXorb;  // the last bit that a diffs b
+        int intA = 0, intB = 0;
+        for (auto item : nums) {
+            // based on the last bit, group the items into groupA(include a) and groupB
+            if (item & lastBit) intA = intA ^ item;
+            else intB = intB ^ item;
+        }
+        return vector<int>{intA, intB};   
+    }
+};
+
+```
+
+## 263. Ugly Number
+
+### 问题
+Write a program to check whether a given number is an ugly number.
+
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For example, 6, 8 are ugly while 14 is not ugly since it includes another prime factor 7.
+
+Note that 1 is typically treated as an ugly number.
+
+### 思考
+直接操作。
+
+### 代码
+```
+class Solution {
+public:
+    bool isUgly(int num) {
+        if (num <= 0) return false;
+        while (num > 1) {
+            if (num % 2 == 0) num /= 2;
+            else if (num % 3 == 0) num /= 3;
+            else if (num % 5 == 0) num /= 5;
+            else break;
+        }
+        if (num == 1) return true;
+        return false;
+    }
+};
+
+```
+

@@ -45,3 +45,5 @@
     `很意外，243-256 都是需要会员才可以练习的，故跳过`
 43. [257. Binary Tree Paths](https://leetcode.com/problems/binary-tree-paths/description/)
 44. [258. Add Digits](https://leetcode.com/problems/add-digits/description/)
+45. [260. Single Number III](https://leetcode.com/problems/single-number-iii/description/) 对异或的操作。很有意思。
+46. 
