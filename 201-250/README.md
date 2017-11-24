@@ -48,4 +48,5 @@
 45. [260. Single Number III](https://leetcode.com/problems/single-number-iii/description/) 对异或的操作。很有意思。
 46. [263. Ugly Number](https://leetcode.com/problems/ugly-number/description/)
 47. [264. Ugly Number II](https://leetcode.com/problems/ugly-number-ii/description/) 很经典的丑数的一道题目。
-48. 
+48. [268. Missing Number](https://leetcode.com/problems/missing-number/description/) 虽然是一道easy的，但是还是很有趣的。
+49. 

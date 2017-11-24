@@ -375,3 +375,63 @@ public:
 ```
 
 
+## 268. Missing Number
+
+### 问题
+Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+
+For example,     
+Given nums = `[0, 1, 3]` return 2.
+
+Note:    
+Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
+
+### 思考
+线性时间，加常量空间的方法没有想出来。有xor， sum。xor觉得不具有普适性，sum的方法还是和正常的。
+
+### 代码
+```
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int res;
+        vector<bool> miss(nums.size() + 1, true);
+        for (auto a:nums) {
+            miss[a] = false;
+        }
+        for (int i = 0; i < miss.size(); ++i) {
+            if (miss[i] == true) { res = i; break; }
+        }
+        
+        return res;
+    }
+};
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int size = nums.size();
+        int sum = (size + 1) * size / 2;
+        for (auto a:nums) {
+            sum -= a;
+        }
+        return sum;
+    }
+};
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int res = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            res ^= i ^ nums[i];
+        }
+        res ^= nums.size();
+        
+        return res;
+    }
+};
+
+```
+
+
