@@ -49,4 +49,5 @@
 46. [263. Ugly Number](https://leetcode.com/problems/ugly-number/description/)
 47. [264. Ugly Number II](https://leetcode.com/problems/ugly-number-ii/description/) 很经典的丑数的一道题目。
 48. [268. Missing Number](https://leetcode.com/problems/missing-number/description/) 虽然是一道easy的，但是还是很有趣的。
-49. 
+49. [273. Integer to English Words](https://leetcode.com/problems/integer-to-english-words/description/) 题目意义一般。
+50. [274. H-Index](https://leetcode.com/problems/h-index/description/) 理解h-index的含义。
