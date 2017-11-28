@@ -488,6 +488,7 @@ Note: If there are several possible values for h, the maximum one is taken as th
 
 ### 思考
 主要是不知道h-index的含义，我是根据wiki中的公式直接写的。而根据题目的描述我还看不出来意思，还好N - h 中的-是减号。
+使用类似桶排序，统计数据
 
 ### 代码
 ```
@@ -505,6 +506,37 @@ public:
         return m;
     }
 };
+// 排序好之后的logN算法。
+int hIndex(int* citations, int citationsSize) {
+    int lo = 0, hi = citationsSize, mid, index = 0;
+    while (lo <= hi) {
+        mid = lo + ((hi - lo) >> 1);
+        if (citations[citationsSize - mid - 1] > mid) {
+            lo = mid + 1;
+            index = lo;
+        } else {
+            hi = mid - 1;
+        }
+    }
+    return index;
+}
 
+int hIndex(vector<int>& citations) {
+    int size = citations.size();
+    vector<int> bucket(size + 1, 0);
+    for (auto a:citations) {
+        if (a >= size) {
+            bucket[size] ++;
+        }
+        else bucket[a] ++;
+    }
+    int count = 0;
+    for (int i = size; i >= 0; --i) {
+        count += bucket[i];
+        if (count >= i) return i;
+    }
+    
+    return 0;
+}
 ```
 
