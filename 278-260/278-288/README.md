@@ -35,3 +35,51 @@ public:
 
 ```
 
+## 279. Perfect Squares
+
+### 问题
+
+Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...) which sum to n.
+
+For example, given n = 12, return 3 because 12 = 4 + 4 + 4; given n = 13, return 2 because 13 = 4 + 9.
+
+
+### 思考
+下面的代码是巨慢无比的代码，因为没有好的思路。
+**Explanation:**   
+
+I happen to have given a little talk about just this topic a while back in a number theory seminar. This problem is completely solved, in the sense of being reduced to simple checks of a number's prime factorization. A natural number is...
+```
+... a square if and only if each prime factor occurs to an even power in the number's prime factorization.
+... a sum of two squares if and only if each prime factor that's 3 modulo 4 occurs to an even power in the number's prime factorization.
+... a sum of three squares if and only if it's not of the form 4a(8b+7) with integers a and b.
+... a sum of four squares. Period. No condition. You never need more than four.
+Of course single squares can also be identified by comparing a given number with the square of the rounded root of the number.
+```
+
+The problem statement says "1, 4, 9, 16, ...", for some reason apparently excluding 0, but it really is a perfect square and the above theorems do consider it one. With that, you can for example always extend a sum of two squares a2+b2 to the sum of three squares a2+b2+02. Put differently, if n isn't a sum of three squares, then it also isn't a sum of two squares. So you can read the above statements as "... a sum of m (or fewer) squares". Thanks to ruben3 for asking about this in the comments.
+
+In my above solutions, I first divide the given number by 4 as often as possible and then do the three-squares check. Dividing by 4 doesn't affect the other checks, and the n % 8 == 7 is cheaper than the prime factorization, so this saves time in cases where we do need four squares.
+
+Armed with just the knowledge that you never need more than four squares, it's also easy to write O(n) solutions, e.gS
+
+### 代码
+```
+class Solution {
+public:
+    int numSquares(int n) {
+        if (numSq.find(n) != numSq.end()) return numSq[n];
+        if (n == 0) return 0;
+        int min = INT_MAX;
+        for (int i = 1; i * i <= n; ++i) {
+            int count = numSquares(n - i * i);
+            if (min > 1 + count) min = 1 + count;
+        }
+        numSq[n] = min;
+        return min;
+    }
+    unordered_map<int, int> numSq;
+};
+
+```
+
