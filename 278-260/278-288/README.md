@@ -108,3 +108,41 @@ Examples:
 
 ```
 
+
+## 283. Move Zeroes
+### 问题
+
+Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+For example, given nums = \[0, 1, 0, 3, 12\], after calling your function, nums should be \[1, 3, 12, 0, 0\].
+
+Note:   
+1. You must do this in-place without making a copy of the array.
+2. Minimize the total number of operations.
+
+
+### 思考
+和插入排序比较像。
+
+### 代码
+```
+class Solution {
+public:
+    void swap(int &a, int &b) {
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
+    }
+    void moveZeroes(vector<int>& nums) {
+        int zero_position = -1;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] == 0 && zero_position == -1) zero_position = i;
+            else if (nums[i] != 0 && zero_position != -1) {
+                swap(nums[i], nums[zero_position]);
+                ++zero_position;
+            }
+        }
+    }
+};
+
+```
