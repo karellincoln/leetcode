@@ -5,4 +5,5 @@
 3. [282. Expression Add Operators](https://leetcode.com/problems/expression-add-operators/description/) 还没有写。挺麻烦的，现在思维还没有那么完善
 4. [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/description/) 挺简单的。
 5. [284. Peeking Iterator](https://leetcode.com/problems/peeking-iterator/description/) 挺无聊的，没有什么感觉。
-6. 
+6. [287. Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/description/) 
+7. []() 测试一下
